@@ -19,7 +19,7 @@ Architecture
 
 ##Configuration instruction
 
-###The interface can be found at [My Website](http://www.sarimzaidi.com/projects/zappos) here you can search for any product using the search box, some times the zappos api gets *throttled* and you dont get any results, so beware of that.
+###The interface can be found at---> [My Website](http://www.sarimzaidi.com/projects/zappos) ,here you can search for any product using the search box, sometimes the zappos api key gets *throttled* and you dont get any results, so beware of that.
 
 ###once you favorite an item by clicking on the heart button, you will be prompted to enter your name and email, which will be used to send you notifications.
 
