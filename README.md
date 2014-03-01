@@ -21,6 +21,8 @@ Architecture
 
 ###The interface can be found at---> [My Website](http://www.sarimzaidi.com/projects/zappos) ,here you can search for any product using the search box, sometimes the zappos api key gets *throttled* and you dont get any results, so beware of that.
 
+>you can also change the key on `line 41` in `index.html` and `line 119` in `web-server.js` to some other non-throttlinf key ;)
+
 ###once you favorite an item by clicking on the heart button, you will be prompted to enter your name and email, which will be used to send you notifications.
 
 ###this data now goes to my server **web-server.js** which does all the backend stuff
