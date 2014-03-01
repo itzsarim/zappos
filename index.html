@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" ng-app="myApp">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Zappos|Shoes, Clothing Online</title>
+		<meta name="description" content="Zappos Application for Discount Notification" />
+		<meta name="keywords" content="Zappos, Application, Shoes, Clothing" />
+		<meta name="author" content="Sarim" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/default.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
+		<script src="js/modernizr.custom.js"></script>
+
+		<!-- Make sure my AngularJS calls our API as a "GET", rather than as an "OPTION"-->
+		<script>
+			var myApp = angular.module('myApp', []);
+			myApp.config(['$httpProvider',
+			function($httpProvider) {
+
+				$httpProvider.defaults.useXDomain = true;
+				delete $httpProvider.defaults.headers.common['X-Requested-With'];
+			}]);
+
+			// my function to populate the product details
+
+			function AngularController($scope, $http) {
+
+				
+				$scope.searchItem = null;
+
+				
+				$scope.listOfProducts = null;
+
+				$scope.loadProducts = function() {
+
+					// get search results
+					$http.jsonp('http://api.zappos.com/Search/term/'+$scope.searchItem+'?callback=JSON_CALLBACK&limit=30&key=12c3302e49b9b40ab8a222d7cf79a69ad11ffd78').success(function(data) {
+				//	$http.jsonp('http://api.zappos.com/Search?callback=JSON_CALLBACK&term=' + $scope.searchItem + '&key=b05dcd698e5ca2eab4a0cd1eee4117e7db2a10c4').success(function(data) {
+
+						var txt = data;
+						var obj = eval(txt);
+						$scope.listOfProducts = obj.results;
+
+						// alert($scope.listOfProducts);
+					}).error(function(data, status, headers, config) {
+						$scope.errorMessage = "No product matching this search found, error # " + status;
+
+						alert($scope.errorMessage);
+					});
+
+				};
+
+				//redirecting to product url
+
+				$scope.redirecting = function(url) {
+					
+					window.open(url, '_blank');
+				};
+				
+				//redirecting to form
+				$scope.popup = function(productId, styleId) {
+
+					window.location = 'form.html?' + productId + ',' + styleId;
+
+					
+
+				};
+
+			}
+
+			
+
+		</script>
+
+	</head>
+	<body ng-controller="AngularController">
+		<div data-role="page">
+			<div class="container" >
+				<header class="clearfix">
+					<span><img src="images/Zappos_logo-1.jpg" width="20%"></img>
+						<div  id="searchdiv" >
+
+							<input id="searchbox" ng-model="searchItem" ng-change="loadProducts()" placeholder="WHAT AM I HERE FOR?" />
+							<br/>
+								<span class="bp-icon bp-icon-about" data-content="Hola! so now that we have managed to pull you back to our online store, just start entering what you want to search for in this search box."></span>
+					</span>
+					<p style="margin-left: 25%;">
+
+					</p>
+
+			</div>
+
+			</header>
+
+			<div id="cbp-pgcontainer" class="cbp-pgcontainer">
+
+				<ul class="cbp-pggrid">
+
+					<li ng-repeat='product in listOfProducts'>
+						<div class="cbp-pgcontent">
+
+							<div class="cbp-pgitem">
+								<div class="cbp-pgitem-flip">
+									<img src={{product.thumbnailImageUrl}} /><!--add image here-->
+
+								</div>
+							</div><!-- /cbp-pgitem -->
+							<ul class="cbp-pgoptions">
+
+								<li class="cbp-pgoptfav" ng-click="popup(product.productId,product.styleId)">
+									<!--setup an onclick for opening a form popup-->
+									Favorite
+								</li>
+
+								
+								<li class="cbp-pgoptcart" ng-click="redirecting(product.productUrl)" ></li>
+							</ul><!-- cbp-pgoptions -->
+						</div><!-- cbp-pgcontent -->
+						<div class="cbp-pginfo">
+							<h3>{{product.productName}}</h3><!--product name-->
+							<!--<h3>{{product.brandName}}</h3><!--brandname->-->
+							<span class="cbp-pgprice">{{product.price}}</span><!--product price-->
+						</div>
+					</li>
+
+				</ul><!-- /cbp-pggrid -->
+			</div><!-- /cbp-pgcontainer -->
+
+		</div><!-- /content -->
+
+		</div><!---page ends-->
+
+		<script src="js/cbpShop.min.js"></script>
+		<script>
+			var shop = new cbpShop(document.getElementById('cbp-pgcontainer'));
+		</script>
+	</body>
+</html>

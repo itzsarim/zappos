@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html >
+	<head>
+
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.css" />
+		<script src="http://code.jquery.com/jquery-1.4.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
+
+		<script>
+			var query = window.location.search;
+			// Skip the leading ?, which should always be there,
+			// but be careful anyway
+			if (query.substring(0, 1) == '?') {
+				query = query.substring(1);
+			}
+			var data = query.split(',');
+
+			var pid = data[0];
+			var sid = data[1];
+
+			function fromForm() {
+				// get name and email from form
+				var name = document.getElementById("name").value;
+				var email = document.getElementById("email").value;
+
+				var req;
+				
+				alert('Thank You, you will be notified when this product goes on sale:)');
+
+				// Get an XMLHttpRequest object in a portable way.
+				function newRequest() {
+					req = false;
+					// For Safari, Firefox, and other non-MS browsers
+					if (window.XMLHttpRequest) {
+						try {
+							req = new XMLHttpRequest();
+						} catch (e) {
+							req = false;
+						}
+					} else if (window.ActiveXObject) {
+						// For Internet Explorer on Windows
+						try {
+							req = new ActiveXObject("Msxml2.XMLHTTP");
+						} catch (e) {
+							try {
+								req = new ActiveXObject("Microsoft.XMLHTTP");
+							} catch (e) {
+								req = false;
+							}
+						}
+					}
+				}
+
+				newRequest();
+
+				req.open("POST", "http://localhost:10001", false);//address and port number of where node is listening
+				req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				var encoded = "";
+				encoded = "pid=" + pid + "&sid=" + sid + "&name=" + name + "&email=" + email;
+				req.send(encoded);
+
+				if (req.status != 200) {
+					alert("There was a communications error: " + req.responseText);
+					return;
+				} else {
+					alert('thank you');
+				}
+				
+				
+
+			}//fromform ends
+
+		</script>
+
+	</head>
+
+	<body bgcolor="#2c5987">
+
+		<form id="MyForm" >
+			<div style="padding:40px 60px;">
+				<h3>Notify Me When This Product Goes On Sale</h3>
+				<label for="name" class="ui-hidden-accessible">Name:</label>
+				<input type="text" name="name" id="name" value="name" placeholder="name" data-theme="a">
+				<label for="email" class="ui-hidden-accessible">EmailId:</label>
+				<input type="email" name="email" id="email" value="email" placeholder="email" data-theme="a">
+				<button type="button" onclick="fromForm()" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">
+					Email Me
+				</button>
+			</div>
+		</form>
+
+	</body>
+
+</html>
