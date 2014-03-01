@@ -5,7 +5,7 @@ zappos
 
 ###This project is a coding challenge for zappos.com
 
-###This a responsive web application optimised for mobile.
+###This is a responsive web application optimised for mobile.
 
 ###It uses zappos API to make RESTful calls and get product details from zappos servers. It uses angular.js for the front-end interface, node.js for the server and mongodb for storing data. 
 
