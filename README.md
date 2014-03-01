@@ -25,7 +25,7 @@ Architecture
 
 ###this data now goes to my server **web-server.js** which does all the backend stuff
 
-### to make the backend work, you need to host the web-server.js on your machine which has node.js install on it as well as mangodb installed.
+### to make the backend work, you need to host the web-server.js on your machine which has node.js installed on it as well as mangodb installed.
 
 ##changes to be made in *form.html* and *web-server.js*
 
