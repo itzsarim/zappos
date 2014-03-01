@@ -26,6 +26,7 @@ Architecture
 ###once you favorite an item by clicking on the heart button, you will be prompted to enter your name and email, which will be used to send you notifications.
 
 ###this data now goes to my server **web-server.js** which does all the backend stuff
+>you need to run web-server.js after you set it up on your server
 
 ### to make the backend work, you need to host the web-server.js on your machine which has node.js installed on it as well as mangodb installed.
 
