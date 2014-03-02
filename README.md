@@ -3,11 +3,11 @@ zappos
 
 ##This is the project description
 
-###This project is a coding challenge for zappos.com
+####This project is a coding challenge for zappos.com
 
-###This is a responsive web application optimised for mobile.
+####This is a responsive web application optimised for mobile.
 
-###It uses zappos API to make RESTful calls and get product details from zappos servers. It uses angular.js for the front-end interface, node.js for the server and mongodb for storing data. 
+####It uses zappos API to make RESTful calls and get product details from zappos servers. It uses angular.js for the front-end interface, node.js for the server and mongodb for storing data. 
 
 ####you can search for a product using the interface and favorite an item by clicking on the heart button below the product, or buy it by clicking on the cart button(basically you are redirected to zappos.com for that product ;)).
 ####once you favorite an item, you will be prompted to enter your name and email id, so that zappos can send you notifications when this item goes on sale(more than 20%).
