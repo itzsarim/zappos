@@ -1,4 +1,4 @@
-zappos
+zappotos
 ======
 
 ##This is the project description
