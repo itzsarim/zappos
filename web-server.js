@@ -1,5 +1,12 @@
 var http = require("http");
 var url = require("url");
+var express = require('express');
+var app = express();
+
+app.use(express.static(__dirname + '/'));
+console.log('server started on 4000');
+
+app.listen(4000);
 
 //make mongo connection
 var mongoose = require('mongoose');
@@ -26,6 +33,10 @@ var mongoose = require('mongoose');
 	var entry = mongoose.model('entry', zapposSchema);
 
 	//-------------------------------------------------------------------------------------//
+
+
+
+
 
 // extract product id , name and email from the form submitted and insert in the db
 
